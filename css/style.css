@@ -102,5 +102,11 @@ label{
 
 #plotagem{
    align-content: center;
-    margin: auto;
+   margin: auto;
+   background-color: aqua;
+    text-align: center;
+}
+#valoraprox{
+    background-color: blue;
+    text-align: center;
 }

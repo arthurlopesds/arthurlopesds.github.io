@@ -33,14 +33,14 @@
             <article class="conteudo_dentro">
                 <section>
                    <form>
-                       <label>Função</label>
-                            <input type="text"  placeholder="" autofocus/>
-                       <label>Erro Tolerância</label>
-                            <input type="text"  placeholder="" required/>
-                       <label>Valor Inicial</label>
-                            <input type="text"  placeholder="" required/>
-                       <label>Máximo de Iterações</label>
-                            <input type="text"  placeholder="" required/>
+                       <label for="funcao">Função</label>
+                            <input type="text" id="funcao" placeholder="x^2+x^3+x^4" autofocus/>
+                       <label for="erroto">Erro Tolerância</label>
+                            <input type="text" id="erroto" placeholder="0.001" required/>
+                       <label for="valorinicial">Valor Inicial</label>
+                            <input type="text" id="valorinicial" placeholder="1" required/>
+                       <label for="maxint">Máximo de Iterações</label>
+                            <input type="text" id="maxint" placeholder="5" required/>
                        <br><br>
                        <input class="br" type="submit" value="Buscar Raízes" onclick="imgLetra()">
                    </form>
@@ -51,8 +51,13 @@
             
             <article>
                 <section>
+                    
+                    <div id="valoraprox">
+                    
+                    </div>
+                    
                     <div id="plotagem" >
-                     <h2>plotar aqui</h2>
+                     
                     
                     </div>
                 </section>
