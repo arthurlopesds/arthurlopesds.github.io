@@ -1,0 +1,106 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: aliceblue
+}
+
+.barra{
+    background-color: #333;
+    height: 100%;
+    width: 300px;
+    position: absolute;
+    float: left;
+}
+
+nav{
+    width: 100px;
+    position: absolute;
+    top:60px;
+}
+
+nav a{
+    text-decoration: none;
+}
+
+.link{
+    background-color: #494950;
+    padding: 20px;
+    font-family: 'Arial';
+    width: 260px;
+    color: #f4f4f9;
+    border-bottom: 2px solid #222;
+}
+
+.link:hover{
+    
+    background-color: #050542;
+}
+
+#tituloMenu{
+    margin: 20px;
+    text-align:center;
+    font-family: 'Arial';
+    color: #f4f4f9;
+}
+
+.titulo{
+    border-bottom: 2px solid black;
+    font-family: 'Calibri';
+    width: 350px;
+    height: 100%;
+    margin-left: 750px;
+}
+.conteudo{
+    width: 1210px;
+    height: 100%;
+    position: absolute;
+    
+    float:left;
+    margin-left: 300px;
+}
+.equipe{
+    margin-left: 20px;
+    
+}
+.conteudo_dentro{
+    margin-left: 5px;
+    font-family: 'Calibri'
+}
+
+input{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+<!--halley-->
+label{
+    font-family: 'Calibri';
+    font-weight: bold;
+}
+
+.br:hover{
+    background-color: #45a049;
+}
+
+.br{
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#plotagem{
+   align-content: center;
+    margin: auto;
+}
