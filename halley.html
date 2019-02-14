@@ -2,12 +2,7 @@
 <html lang="pt-br">
     <head>
         <title>Cálculo Numérico</title>
-        <script type="text/javascript">
-            function imgLetra(){
-                document.getElementById('plotagem').innerHTML="<img src='img/centrodeinfo.png'>";
-            }
-        
-        </script>
+        <script type="text/javascript" src="js/halley.js"></script>
         <meta charset="utf-8">
         <!--[if lt IE 9]>
 	       <script src="js/html5shiv.js"></script>
@@ -36,11 +31,11 @@
                        <label for="funcao">Função</label>
                             <input type="text" id="funcao" placeholder="x^2+x^3+x^4" autofocus/>
                        <label for="erroto">Erro Tolerância</label>
-                            <input type="text" id="erroto" placeholder="0.001" required/>
+                            <input type="number" id="erroto" placeholder="0.001" required/>
                        <label for="valorinicial">Valor Inicial</label>
-                            <input type="text" id="valorinicial" placeholder="1" required/>
+                            <input type="number" id="valorinicial" placeholder="1" required/>
                        <label for="maxint">Máximo de Iterações</label>
-                            <input type="text" id="maxint" placeholder="5" required/>
+                            <input type="number" id="maxint" placeholder="5" required/>
                        <br><br>
                        <input class="br" type="submit" value="Buscar Raízes" onclick="imgLetra()">
                    </form>
@@ -57,7 +52,12 @@
                     </div>
                     
                     <div id="plotagem" >
-                     
+                        
+                        <script>
+                            function plotagem() {
+                                
+                            }
+                        </script>
                     
                     </div>
                 </section>
