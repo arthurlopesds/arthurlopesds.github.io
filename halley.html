@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title>Cálculo Numérico</title>
+        <script type="text/javascript">
+            function imgLetra(){
+                document.getElementById('plotagem').innerHTML="<img src='img/centrodeinfo.png'>";
+            }
+        
+        </script>
+        <meta charset="utf-8">
+        <!--[if lt IE 9]>
+	       <script src="js/html5shiv.js"></script>
+        <![endif]-->
+        <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    </head>
+    <body>
+        
+        <div class="barra">
+            <div id="tituloMenu"><h2>Métodos Numericos</h2></div>
+            <nav>
+                <a href="halley.html"><div class="link">Método de Halley</div></a>
+                <!--<a href="#"><div class="link">Método de Ridders</div></a>-->
+                
+            </nav>
+        </div>
+        <div class="titulo">
+                  <h1>Cálculo Numérico 2018.2</h1>
+        </div>
+        <div class="conteudo">
+            <h2 style="font-family: Calibri;margin-left: 4px;">Metódo de Halley</h2>
+            <br><br>
+            <article class="conteudo_dentro">
+                <section>
+                   <form>
+                       <label>Função</label>
+                            <input type="text"  placeholder="" autofocus/>
+                       <label>Erro Tolerância</label>
+                            <input type="text"  placeholder="" required/>
+                       <label>Valor Inicial</label>
+                            <input type="text"  placeholder="" required/>
+                       <label>Máximo de Iterações</label>
+                            <input type="text"  placeholder="" required/>
+                       <br><br>
+                       <input class="br" type="submit" value="Buscar Raízes" onclick="imgLetra()">
+                   </form>
+                </section>
+            </article>
+            
+            <br><br><br>
+            
+            <article>
+                <section>
+                    <div id="plotagem" >
+                     <h2>plotar aqui</h2>
+                    
+                    </div>
+                </section>
+            </article>
+        
+        </div>
+   
+        
+    
+    </body>
+</html>
