@@ -1,5 +1,3 @@
-var math = require('mathjs')
-
 const findVariable = (f) => {
     // Expressão regular para isolar a variável da função
     let regexVar = /([a-zA-Z][\w]*) ?([\+\-\/\*\^]|$|\))/
@@ -37,6 +35,13 @@ const stringToFunction = (f, variable) => {
     return f
 }
 
+
+function getDerivada(f) {
+    // retorna o calculo aproximado do derivada da função
+    let h = 0.001
+    return (x) => (f(x + h) - f(x - h)) / (2 * h);
+}
+
 /*
     f -> função
     xo -> valor inicial
@@ -63,10 +68,10 @@ const halleyMethod = (f, x0, tol, iter) => {
     // Encontrando derivada primeira e segunda da função
     let der1 = math.derivative(f, variable).toString()
     let der2 = math.derivative(der1, variable).toString()
-
+    
     // Converte o erro para valor
     tol = parseFloat(tol).toFixed(20);
-
+    
     // Converte as funções de String para Função JS
     f = stringToFunction(f, variable)
     der1 = stringToFunction(der1, variable)
@@ -84,5 +89,5 @@ const halleyMethod = (f, x0, tol, iter) => {
         i++
     }
 
-    return ( { xi, xValues, yValues } )
+    return ( { xi: xi, xValues: xValues, yValues: yValues } )
 }

@@ -3,6 +3,8 @@
     <head>
         <title>Cálculo Numérico</title>
         <script type="text/javascript" src="js/halley.js"></script>
+        <script src="libs/math.min.js"></script>
+        <script src="libs/plotly-latest.min.js"></script>
         <meta charset="utf-8">
         <!--[if lt IE 9]>
 	       <script src="js/html5shiv.js"></script>
@@ -35,13 +37,14 @@
                             <input type="text" id="erroto" 
                                 placeholder="0.001" required/>
                        <label for="valorInicial">Valor Inicial</label>
-                            <input type="text" id="valorinicial" 
+                            <input type="text" id="valorInicial" 
                                 placeholder="1" required/>
                        <label for="maxInt">Máximo de Iterações</label>
-                            <input type="text" id="maxint" 
+                            <input type="text" id="maxInt" 
                                 placeholder="5" required/>
                        <br><br>
-                       <input class="br" type="submit" value="Buscar Raízes" onclick="plotagem()">
+                       <input class="br" type="submit" 
+                            value="Buscar Raízes" onclick="plotagem()">
                    </form>
                 </section>
             </article>
@@ -49,56 +52,51 @@
             <br><br><br>
             
             <article>
-                <section>
-                    
-                    <div id="valorAprox"></div>
-                    
-                    <div id="plotagem" ></div>
-                    <script src="libs/plotly-latest.min.js"></script>
-                    <script>
-                        function plotagem() {
-                            // let values = (id) => document.getElementById(id).value
-                            let funcao = document.getElementById('funcao').value
-                            let erroto = document.getElementById('erroto').value
-                            let valorInicial = document.getElementById('valorInicial').value
-                            let maxInt = document.getElementById('maxInt').value
-
-                            let divValorAprox = document.getElementById('valorAprox').value
-
-                            let resultado = halleyMethod(funcao, valorInicial, erroto, maxInt)
-
-                            if(resultado.xi) {
-                                divValorAprox.innerHTML = '<h5>Valor aproximado: ' + resultado.xi + '</h5>';
-                            }else {
-                                divValorAprox.innerHTML = ''
-                                return
-                            }
-
-                            var trace = {
-                                x: resultado.xValues,
-                                y: resultado.yValues,
-                                mode: 'markers',
-                                type: 'scatter',
-                                marker: {
-                                    size: 12,
-                                    color: '#00BFFF'
-                                }
-                            }
-
-                            var layout = {
-                                name: 'Método de Halley'
-                            }
-
-                            Plotly.newPlot('myDiv', trace, layout);
-                        }
-                    </script>
-                        
+                <section>                   
+                    <div id="valorAprox"></div>                   
+                    <div id="plotagem" ></div>                       
                 </section>
             </article>
         
         </div>
-   
-        
-    
+
+        <script>
+            function plotagem() {
+                // console.log('testando')
+                // let values = (id) => document.getElementById(id).value
+                let funcao = document.getElementById('funcao').value
+                let erroto = document.getElementById('erroto').value
+                let valorInicial = document.getElementById('valorInicial').value
+                let maxInt = document.getElementById('maxInt').value
+
+                let divValorAprox = document.getElementById('valorAprox')
+
+                let resultado = halleyMethod(funcao, valorInicial, erroto, maxInt)
+                // console.log(resultado.xi)
+                if(resultado.xi) {
+                    divValorAprox.innerHTML = "<h5>Valor aproximado: " + resultado.xi + "</h5>"
+                }else {
+                    divValorAprox.innerHTML = ""
+                    return
+                }
+
+                var trace = {
+                    x: resultado.xValues,
+                    y: resultado.yValues,
+                    mode: 'markers',
+                    type: 'scatter',
+                    marker: {
+                        size: 12,
+                        color: '#00BFFF'
+                    }
+                }
+
+                var layout = {
+                    name: 'Método de Halley'
+                }
+
+                Plotly.newPlot('plotagem', [trace], layout);
+            }
+        </script>  
     </body>
 </html>
