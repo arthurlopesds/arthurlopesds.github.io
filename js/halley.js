@@ -63,9 +63,7 @@ const halleyMethod = (f, x0, tol, iter) => {
     let der2 = math.derivative(der1, variable).toString()
     
     // Converte o erro para valor
-    console.log('tol antes = ' + tol)
     tol = parseFloat(tol).toFixed(20);
-    console.log('tol depois = ' + tol)
     
     // Converte as funções de String para Função JS
     f = stringToFunction(f, variable)
