@@ -35,13 +35,6 @@ const stringToFunction = (f, variable) => {
     return f
 }
 
-
-function getDerivada(f) {
-    // retorna o calculo aproximado do derivada da função
-    let h = 0.001
-    return (x) => (f(x + h) - f(x - h)) / (2 * h);
-}
-
 /*
     f -> função
     xo -> valor inicial
