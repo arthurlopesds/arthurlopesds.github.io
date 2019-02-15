@@ -38,8 +38,10 @@
                             <input type="text" id="maxInt" 
                                 placeholder="5" required/>
                        <br><br>
-                       <a class="waves-effect waves-light btn-large" 
-                            onclick="plotagem()">Buscar Raiz</a>
+                       <a>
+                           <input class="br" type="button" onclick="plotagem()" value="Buscar Raíz">
+                        
+                       </a>
                    </form>
                 </section>
             </article>
@@ -48,7 +50,8 @@
             
             <article>
                 <section>                   
-                    <div id="valorAprox"></div>                   
+                    <div id="valorAprox"></div>
+                    <br>
                     <div id="plotagem" ></div>                       
                 </section>
             </article>
@@ -68,7 +71,7 @@
                 let resultado = halleyMethod(funcao, valorInicial, erroto, maxInt)
 
                 if(resultado.xi) {
-                    divValorAprox.innerHTML = "<h5>Valor aproximado: " + resultado.xi + "</h5>"
+                    divValorAprox.innerHTML = "<h3>Valor aproximado: " + resultado.xi + "</h3>"
                 }else {
                     divValorAprox.innerHTML = ""
                     return

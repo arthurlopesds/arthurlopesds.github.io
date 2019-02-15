@@ -106,7 +106,8 @@ label{
    /* background-color: aqua; */
     text-align: center;
 }
-#valoraprox{
-    background-color: blue;
-    text-align: center;
+#valorAprox{
+    background-color: deepskyblue;
+   text-align: center;
+   font-family: 'Calibri';
 }
