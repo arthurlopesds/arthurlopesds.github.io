@@ -69,7 +69,8 @@
 
                 let divValorAprox = document.getElementById('valorAprox')
 
-                let resultado = halleyMethod(funcao, valorInicial, erroto, maxInt)
+                let resultado = halleyMethod(funcao, parseFloat(valorInicial),
+                                            parseFloat(erroto), parseInt(maxInt))
 
                 if(resultado.xi) {
                     divValorAprox.innerHTML = "<h3>Valor aproximado: " + resultado.xi + "</h3>"
