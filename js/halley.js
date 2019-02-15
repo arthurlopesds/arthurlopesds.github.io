@@ -18,19 +18,19 @@ const findVariable = (f) => {
 const stringToFunction = (f, variable) => {
 
     // Adicionar a chamada do método correspondente de Math
-    f = f.replace(/(cos|sin|tan|exp|log|log10|log2)/, 'Math.$1')
+    f = f.replace(/(cos|sin|tan|exp|log|log10|log2)/g, 'Math.$1')
     f = f.replace(/\^/g, '**')
 
     // Criando uma arrow function a partir da string
     f = eval('(' + variable + ') => ' + f)
 
     // Verficar se a função foi escrita corretamente
-    try {
-        f(1)
-    } catch (Error) {
-        console.log("A função não está correta!");
-        return;
-    }
+    // try {
+    //     f(1)
+    // } catch (Error) {
+    //     console.log("A função não está correta!");
+    //     return;
+    // }
 
     return f
 }
@@ -75,7 +75,7 @@ const halleyMethod = (f, x0, tol, iter) => {
 
     while((i < iter) && (err > tol)) {
         xi = x0 - (2 * f(x0) * der1(x0)) / (2 * (der1(x0) * der1(x0)) - (f(x0) * der2(x0)))
-        err = Math.abs(xi - x0)
+        err = Math.abs((xi - x0)/xi)
         xValues.push(xi)
         yValues.push(f(xi))
         x0 = xi
