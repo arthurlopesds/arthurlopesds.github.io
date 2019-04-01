@@ -94,9 +94,10 @@ const buildSpline = (x, y) => {
     var splineConstants = findSplineConstants(x, y)
     var yInterpolated = []
     var xInterval = getXInterval(x)
+    xInterval.push(x[x.length-1])
     var polynomialFunction = getPolynomialFunction(splineConstants)
     let i = 0
-
+    
     for(let j = 0; j < xInterval.length; j++) {
         if(xInterval[j] > x[i+1])
             i++
