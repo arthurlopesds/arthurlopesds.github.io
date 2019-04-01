@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title>Cálculo Numérico</title>
+        <script src="libs/math.min.js"></script>
+        <script src="libs/plotly-latest.min.js"></script>
+        <script type="text/javascript" src="js/splines.js"></script>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    </head>
+    <body>
+        
+        <div class="barra">
+            <a href="index.html" style="text-decoration:none"><div id="tituloMenu"><h2>Projetos</h2></div></a>
+            <nav>
+                <a href="halley1.html"><div class="link">Método de Halley</div></a>    
+                <a href="splines.html"><div class="link">Spline Cúbica</div></a>
+            </nav>
+        </div>
+        <div class="titulo">
+                  <h1>Cálculo Numérico 2018.2</h1>
+        </div>
+        <div class="conteudo">
+            <h2 style="font-family: Calibri;margin-left: 4px;">Splines Cúbicas</h2>
+            <br><br>
+            <article class="conteudo_dentro">
+                <section>
+                   <form>
+                       <label for="x">Valores de X</label>
+                            <input type="text" id="x" 
+                                placeholder="0.1, 0.5, 0.9, 1.3, 1.7" autofocus required/>
+                       <label for="y">Valores de Y</label>
+                            <input type="text" id="y" 
+                                placeholder="-2.3026, -0.69315, -0.10536, 0.26236, 0.53063" required/>
+                       <br><br>
+                       <a>
+                           <input class="br" type="button" 
+                                onclick="plotagem()" value="Calcular">
+                        
+                       </a>
+                   </form>
+                </section>
+            </article>
+            
+            <br><br><br>
+            
+            <article>
+                <section>                   
+                    <div id="valorAprox"></div>
+                    <br>
+                    <div id="plotagem"></div>                       
+                </section>
+            </article>
+        
+        </div>
+
+        <script>
+            function plotagem() {
+                let x = document.getElementById('x').value
+                let y = document.getElementById('y').value
+                x = x.split(',')
+                y = y.split(',')
+                for(let i = 0; i < x.length; i++) {
+                    x[i] = parseFloat(x[i])
+                    y[i] = parseFloat(y[i])
+                }
+                let resultado = buildSpline(x, y)
+                // let valorInicial = document.getElementById('valorInicial').value
+                // let maxInt = document.getElementById('maxInt').value
+                let divValorAprox = document.getElementById('valorAprox')
+                // let resultado = halleyMethod(funcao, parseFloat(valorInicial),
+                //                             parseFloat(erroto), parseInt(maxInt))
+                var str = ""
+                if(resultado.polynomialFunction) {
+                    for(let i = 0; i < resultado.polynomialFunction.length; i++){
+                        str += resultado.polynomialFunction[i] + "<br>"
+                    }
+                    divValorAprox.innerHTML = "<h3>" + str + "</h3>"
+                }else {
+                    divValorAprox.innerHTML = ""
+                    return
+                }
+                // console.log(resultado.yInterpolated)
+                // console.log(resultado.xInterval)
+                var trace = {
+                    x: resultado.x,
+                    y: resultado.y,
+                    mode: 'markers',
+                    name: 'Points',
+                    type: 'scatter',
+                    marker: {
+                        size: 6,
+                        color: '#00BFFF'
+                    }
+                }
+                var trace1 = {
+                    x: resultado.xInterval,
+                    y: resultado.yInterpolated,
+                    mode: 'lines+markers',
+                    name: 'Spline',
+                    type: 'scatter',
+                    marker: {
+                        size: 1,
+                        color: '#4169E1'
+                    }
+                }
+                var layout = {
+                    name: 'Spline Cúbica'
+                }
+                Plotly.newPlot('plotagem', [trace, trace1], layout);
+            }
+        </script>  
+    </body>
+</html>
