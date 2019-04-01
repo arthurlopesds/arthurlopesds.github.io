@@ -1,5 +1,20 @@
 // const math = require('mathjs')
 
+const sortArray = (arr1, arr2) => {
+    var list = [];
+    for (var j = 0; j < arr1.length; j++) 
+        list.push({'array1': arr1[j], 'array2': arr2[j]});
+
+    list.sort(function(a, b) {
+        return ((a.array1 < b.array1) ? -1 : ((a.array1 == b.array1) ? 0 : 1));
+    });
+
+    for (var k = 0; k < list.length; k++) {
+        arr1[k] = list[k].array1;
+        arr2[k] = list[k].array2;
+    }
+}
+
 // Encontrar as constantes a, b, c, d para montar a função spline
 // Sn(x) = an + bn*(x - xn) + cn*(x - xn)^2 + dn*(x - xn)^3
 const findSplineConstants = (x, y) => {
@@ -7,6 +22,7 @@ const findSplineConstants = (x, y) => {
      * x -> valores de x da tabela
      * y -> valores de y da tabela
      */
+    sortArray(x, y)
     var xSize = x.length
     var spline = []
     var a = y

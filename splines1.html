@@ -55,59 +55,73 @@
         </div>
 
         <script>
+            function hasDuplicates(array) {
+                var valuesSoFar = [];
+                for (var i = 0; i < array.length; ++i) {
+                    var value = array[i];
+                    if (valuesSoFar.indexOf(value) !== -1) {
+                        return true;
+                    }
+                    valuesSoFar.push(value);
+                }
+                return false;
+            }
+
             function plotagem() {
                 let x = document.getElementById('x').value
                 let y = document.getElementById('y').value
                 x = x.split(',')
                 y = y.split(',')
-                for(let i = 0; i < x.length; i++) {
-                    x[i] = parseFloat(x[i])
-                    y[i] = parseFloat(y[i])
-                }
-                let resultado = buildSpline(x, y)
-                // let valorInicial = document.getElementById('valorInicial').value
-                // let maxInt = document.getElementById('maxInt').value
-                let divValorAprox = document.getElementById('valorAprox')
-                // let resultado = halleyMethod(funcao, parseFloat(valorInicial),
-                //                             parseFloat(erroto), parseInt(maxInt))
-                var str = ""
-                if(resultado.polynomialFunction) {
-                    for(let i = 0; i < resultado.polynomialFunction.length; i++){
-                        str += resultado.polynomialFunction[i] + "<br>"
+                if(hasDuplicates(x)){
+                    alert("Digite valores não repetidos no campo x")
+                }else if(x.length !== y.length) {
+                    alert("Digite a mesma quantidade de valores no campos x e y")
+                }else if(x.length === 1 || y.length === 1){
+                    alert("Digite pelo menos dois valores para cada um dos campos x e y")
+                }else{
+                    for(let i = 0; i < x.length; i++) {
+                        x[i] = parseFloat(x[i])
+                        y[i] = parseFloat(y[i])
                     }
-                    divValorAprox.innerHTML = "<h3>" + str + "</h3>"
-                }else {
-                    divValorAprox.innerHTML = ""
-                    return
-                }
-                // console.log(resultado.yInterpolated)
-                // console.log(resultado.xInterval)
-                var trace = {
-                    x: resultado.x,
-                    y: resultado.y,
-                    mode: 'markers',
-                    name: 'Points',
-                    type: 'scatter',
-                    marker: {
-                        size: 6,
-                        color: '#00BFFF'
+                    let resultado = buildSpline(x, y)
+                    let divValorAprox = document.getElementById('valorAprox')
+                    var str = ""
+                    if(resultado.polynomialFunction) {
+                        for(let i = 0; i < resultado.polynomialFunction.length; i++){
+                            str += resultado.polynomialFunction[i] + "<br>"
+                        }
+                        divValorAprox.innerHTML = "<h3>" + str + "</h3>"
+                    }else {
+                        divValorAprox.innerHTML = ""
+                        return
                     }
-                }
-                var trace1 = {
-                    x: resultado.xInterval,
-                    y: resultado.yInterpolated,
-                    mode: 'lines+markers',
-                    name: 'Spline',
-                    type: 'scatter',
-                    marker: {
-                        size: 1,
-                        color: '#4169E1'
+                    var trace = {
+                        x: resultado.x,
+                        y: resultado.y,
+                        mode: 'markers',
+                        name: 'Points',
+                        type: 'scatter',
+                        marker: {
+                            size: 6,
+                            color: '#00BFFF'
+                        }
                     }
+                    var trace1 = {
+                        x: resultado.xInterval,
+                        y: resultado.yInterpolated,
+                        mode: 'lines+markers',
+                        name: 'Spline',
+                        type: 'scatter',
+                        marker: {
+                            size: 1,
+                            color: '#4169E1'
+                        }
+                    }
+                    var layout = {
+                        name: 'Spline Cúbica'
+                    }
+                    Plotly.newPlot('plotagem', [trace, trace1], layout);
                 }
-                var layout = {
-                    name: 'Spline Cúbica'
-                }
-                Plotly.newPlot('plotagem', [trace, trace1], layout);
             }
         </script>  
     </body>
