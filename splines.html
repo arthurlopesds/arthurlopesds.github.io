@@ -34,8 +34,14 @@
                                 par de nós sucessivos e é chamada interpolação por spline cúbico. Um polinômio cúbico geral envolve quatro constantes; logo, existe flexibilidade 
                                 suficiente no procedimento de splines cúbicos para assegurar que a função interpoladora seja não somente continuamente diferenciável no intervalo, mas 
                                 também tenha uma segunda derivada contínua. A construção do spline cúbico, entretanto, não supõe que as derivadas da função interpoladora coincidam com 
-                                aquelas da função que está sendo aproximada, mesmo nos nós. </p></h3>
-                    <br>
+                                aquelas da função que está sendo aproximada, mesmo nos nós. 
+                        <br>
+                        <br>
+                        Para construir o spline cúbico, usa-se o seguinte polinômio:
+                        </p></h3>
+                    
+                    <div style="font-size: 18px; text-align: center">
+                    <var>S<sub>j</sub></var> (<var>x</var>) = <var>a<sub>j</sub></var> + <var>b<sub>j</sub></var> (<var>x</var> - <var>x<sub>j</sub></var>) + <var>c<sub>j</sub></var> (<var>x</var> - <var>x<sub>j</sub></var>)<sup>2</sup> + <var>d<sub>j</sub></var> (<var>x</var> - <var>x<sub>j</sub></var>)<sup>3</sup></div>
                     <br>
                         <section>        
                             <div id="imgrafico"> <img src="img/grafico.png" id="imgrafico"> </div>
