@@ -117,10 +117,11 @@ label{
    font-family: 'Calibri';
 }
 
-<--SPLINE-->
 
-#plotagemsp{
+#imgrafico{
     align-content: center;
-    width: 20px;
-    height: 20px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 400px;
+    height: 400px;
 }
