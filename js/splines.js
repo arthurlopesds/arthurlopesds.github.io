@@ -90,6 +90,34 @@ const getPolynomialFunction = splineConstants => {
     return polyFunction
 }
 
+// Verifica as condições
+// Sj(xj) = f(xj)
+// Sj(xj+1) = f(xj+1)
+// Sj+1(xj+1) = Sj(xj+1)
+const verifyConditions = (x, y, splineConstants) => {
+    for(let i = 0; i < (splineConstants.length - 1); i++) {
+        let sjxj = getYInterpolated(x[i], x[i], splineConstants[i])
+        let sjxj1 = getYInterpolated(x[i], x[i+1], splineConstants[i])
+        let sj1xj1 = getYInterpolated(x[i+1], x[i+1], splineConstants[i+1])
+
+        if((sjxj.toFixed(6) != y[i].toFixed(6)) || (sjxj1.toFixed(6) != y[i+1].toFixed(6))
+            || (sj1xj1.toFixed(6) != sjxj1.toFixed(6))) {
+                console.log("Não atendeu as condições")
+                return false
+        }
+        
+        /*console.log(`S${i}(x${i}) = ${sjxj.toFixed(6)}`)
+        console.log(`F(${i}) = ${y[i]}`)
+        console.log(sjxj.toFixed(6) != y[i].toFixed(6))
+        console.log(`S${i}(x${i+1}) = ${sjxj1.toFixed(6)}`)
+        console.log(`F(${i+1}) = ${y[i+1]}`)
+        console.log(sjxj1.toFixed(6) != y[i+1].toFixed(6))
+        console.log(`S${i+1}(x${i+1}) = ${sj1xj1}`)
+        console.log("Terminou")*/
+        return true
+    }
+}
+
 const buildSpline = (x, y) => {
     var splineConstants = findSplineConstants(x, y)
     var yInterpolated = []
@@ -97,6 +125,9 @@ const buildSpline = (x, y) => {
     xInterval.push(x[x.length-1])
     var polynomialFunction = getPolynomialFunction(splineConstants)
     let i = 0
+
+    if(!verifyConditions(x, y, splineConstants))
+        return null
     
     for(let j = 0; j < xInterval.length; j++) {
         if(xInterval[j] > x[i+1])

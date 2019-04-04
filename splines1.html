@@ -72,55 +72,59 @@
                 let y = document.getElementById('y').value
                 x = x.split(',')
                 y = y.split(',')
-                if(hasDuplicates(x)){
+                if(hasDuplicates(x)) {
                     alert("Digite valores não repetidos no campo x")
                 }else if(x.length !== y.length) {
                     alert("Digite a mesma quantidade de valores no campos x e y")
-                }else if(x.length === 1 || y.length === 1){
+                }else if(x.length === 1 || y.length === 1) {
                     alert("Digite pelo menos dois valores para cada um dos campos x e y")
-                }else{
+                }else {
                     for(let i = 0; i < x.length; i++) {
                         x[i] = parseFloat(x[i])
                         y[i] = parseFloat(y[i])
                     }
                     let resultado = buildSpline(x, y)
-                    let divValorAprox = document.getElementById('valorAprox')
-                    var str = ""
-                    if(resultado.polynomialFunction) {
-                        for(let i = 0; i < resultado.polynomialFunction.length; i++){
-                            str += resultado.polynomialFunction[i] + "<br>"
-                        }
-                        divValorAprox.innerHTML = "<h3>" + str + "</h3>"
+                    if(resultado == null) {
+                        alert("Não foi possível gerar a spline")
                     }else {
-                        divValorAprox.innerHTML = ""
-                        return
-                    }
-                    var trace = {
-                        x: resultado.x,
-                        y: resultado.y,
-                        mode: 'markers',
-                        name: 'Points',
-                        type: 'scatter',
-                        marker: {
-                            size: 6,
-                            color: '#00BFFF'
+                        let divValorAprox = document.getElementById('valorAprox')
+                        var str = ""
+                        if(resultado.polynomialFunction) {
+                            for(let i = 0; i < resultado.polynomialFunction.length; i++){
+                                str += resultado.polynomialFunction[i] + "<br>"
+                            }
+                            divValorAprox.innerHTML = "<h3>" + str + "</h3>"
+                        }else {
+                            divValorAprox.innerHTML = ""
+                            return
                         }
-                    }
-                    var trace1 = {
-                        x: resultado.xInterval,
-                        y: resultado.yInterpolated,
-                        mode: 'lines+markers',
-                        name: 'Spline',
-                        type: 'scatter',
-                        marker: {
-                            size: 1,
-                            color: '#4169E1'
+                        var trace = {
+                            x: resultado.x,
+                            y: resultado.y,
+                            mode: 'markers',
+                            name: 'Points',
+                            type: 'scatter',
+                            marker: {
+                                size: 6,
+                                color: '#00BFFF'
+                            }
                         }
+                        var trace1 = {
+                            x: resultado.xInterval,
+                            y: resultado.yInterpolated,
+                            mode: 'lines+markers',
+                            name: 'Spline',
+                            type: 'scatter',
+                            marker: {
+                                size: 1,
+                                color: '#4169E1'
+                            }
+                        }
+                        var layout = {
+                            name: 'Spline Cúbica'
+                        }
+                        Plotly.newPlot('plotagem', [trace, trace1], layout);
                     }
-                    var layout = {
-                        name: 'Spline Cúbica'
-                    }
-                    Plotly.newPlot('plotagem', [trace, trace1], layout);
                 }
             }
         </script>  
